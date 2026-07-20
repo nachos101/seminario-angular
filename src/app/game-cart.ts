@@ -10,33 +10,33 @@ import { CartItem } from './game-list/Game';
 export class GameCart {
 
 private _cartList: CartItem[] = [];
-cardList: BehaviorSubject<CartItem[]> = new BehaviorSubject(this._cardList);
+cartList: BehaviorSubject<CartItem[]> = new BehaviorSubject(this._cartList);
 
 
 constructor(){}
 
 addToCart(game: Game): void{
-  let item = this._cardList.find((v1)=>v1.nombre === game.nombre);
+  let item = this._cartList.find((v1)=>v1.name === game.name);
   if (!item){
-    this._cardList.push({...game, original: game});
+    this._cartList.push({...game, original: game});
   } else {
-    item.cantidad += game.cantidad;
+    item.quantity += game.quantity;
   }
-  console.log(this._cardList);
-  this.cardList.next(this._cardList);
+  console.log(this._cartList);
+  this.cartList.next(this._cartList);
 }
 
 removeFromCart(game: Game, quantity: number = 1): void{
-  const item = this._cartList.find((v1)=> v1.nombre === game.nombre);
+  const item = this._cartList.find((v1)=> v1.name === game.name);
   if (!item){
     return;
   }
 
-  item.cantidad -= quantity;
+  item.quantity -= quantity;
   item.original.stock += quantity;
 
-  if (item.cantidad <= 0) {
-    this._cartList = this._cartList.filter((v1) => v1.nombre !== game.nombre);
+  if (item.quantity <= 0) {
+    this._cartList = this._cartList.filter((v1) => v1.name !== game.name);
   }
 
   this.cartList.next(this._cartList);

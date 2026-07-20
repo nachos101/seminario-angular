@@ -10,10 +10,10 @@ import { Observable } from 'rxjs/internal/Observable';
   styleUrl: './carrito.scss',
 })
 export class Carrito {
-  cardList$: Observable<Game[]>;
+  cartList$: Observable<Game[]>;
 
   constructor(private cart: GameCart) {
-    this. cardList$ = this.cart.cardList.asObservable();
+    this. cartList$ = this.cart.cartList.asObservable();
   }
 
   removeFromCart(game: GameCart): void {

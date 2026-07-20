@@ -36,12 +36,13 @@ export class GameList {
       'quantity': 0,
     }
   ];
-  carrito: GameCart;
-  constructor() {
-    this.carrito = new GameCart();
+  
+  constructor(private cart: GameCart, private gameData GameData) {
   }
   addToCart(game: Game): void {
-    this.carrito.addToCart(game);
+     this.cart.addToCart(game);
+     game.stock -= game.quantity;
+      game.quantity = 0;
   }
   
 
