@@ -6,27 +6,19 @@
             <th>Género</th>
             <th>Precio</th>
             <th>Stock</th> 
+            <th>Compra</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><img [src]="game.image" alt="LEGO BATMAN" width="100"></td>
+        <tr *ngFor="let game of games" [ngClass]="{'clearance': game.clearance}">
+            <td><img class="img-thumbnail" [src]="game.image" [alt]="game.name" width="100"></td>
             <td>{{ game.name }}</td>
-            <td>{{ game.genere }}</td>
-            <td>$ {{ game.price }}</td>
-            <td>{{ game.stock }}</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ game.genre }}</td>
+            <td>{{ game.price | currency }}</td>
+            <td><span class="badge text-bg-warning" *ngIf="game.stock == 0">SIN STOCK</span></td>
+            <td>
+                <app-input-integer [quantity]="game.quantity" [max]="game.stock" *ngIf="game.stock"></app-input-integer>
+            </td>
         </tr>
     </tbody>
 </table>
