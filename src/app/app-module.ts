@@ -9,10 +9,11 @@ import { FormsModule } from '@angular/forms';
 import { GameStoreAbout } from './game-store-about/game-store-about';
 import { GameStoreGames } from './game-store-games/game-store-games';
 import { InputInteger } from './input-integer/input-integer';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [App, GameList, Carrito, GameStoreAbout, GameStoreGames, InputInteger],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
   bootstrap: [App],
 })
